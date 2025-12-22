@@ -96,8 +96,8 @@ def map_raster(
 
     # --- intermediate grid size from image dims ---
     az_dim, ra_dim = _get_image_dims(originalDataset)
-    ny = originalDataset.dims[az_dim]
-    nx = originalDataset.dims[ra_dim]
+    ny = originalDataset.sizes[az_dim]
+    nx = originalDataset.sizes[ra_dim]
 
     num = min((ny + nx) // 2, 1000)
 
