@@ -35,7 +35,7 @@ numpy = ">=1.21,<3"
 xarray = ">=2023.1,<2026"
 scipy = "^1.9.0"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 bandit = "^1.7.1"
 black = {version = "^25.11", allow-prereleases = true}
 darglint = "^1.8.1"
