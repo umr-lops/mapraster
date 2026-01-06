@@ -48,8 +48,8 @@ def _to_lon360(ds):
 def fake_ecmwf_0100_1h(*, to180=True, with_nan=False):
     import datetime
 
-    lon = np.linspace(0, 360, 360*10, endpoint=False)
-    lat = np.linspace(-90, 90, 181*10)
+    lon = np.linspace(0, 360, 360 * 10, endpoint=False)
+    lat = np.linspace(-90, 90, 181 * 10)
 
     LON, LAT = np.meshgrid(lon, lat)
 

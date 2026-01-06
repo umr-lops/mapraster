@@ -35,19 +35,29 @@ def test_data_type():
         with_nan=False,
     )
 
-    assert type(map_raster(
-        raster_ds=raster,  # Dataset
-        originalDataset=dataset,
-        footprint=footprint,
-        cross_antimeridian=False,
-    )) == xr.Dataset
+    assert (
+        type(
+            map_raster(
+                raster_ds=raster,  # Dataset
+                originalDataset=dataset,
+                footprint=footprint,
+                cross_antimeridian=False,
+            )
+        )
+        == xr.Dataset
+    )
 
-    assert type(map_raster(
-        raster_ds=raster.U10,  # DataArray
-        originalDataset=dataset,
-        footprint=footprint,
-        cross_antimeridian=False,
-    )) == xr.DataArray
+    assert (
+        type(
+            map_raster(
+                raster_ds=raster.U10,  # DataArray
+                originalDataset=dataset,
+                footprint=footprint,
+                cross_antimeridian=False,
+            )
+        )
+        == xr.DataArray
+    )
 
 
 test_data_type()

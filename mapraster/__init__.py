@@ -2,9 +2,7 @@
 """mapraster is a Python lib to interpolate xarray raster field on image geometry (e.g. line/sample)"""
 
 
-__all__ = [
-    "map_raster"
-]
+__all__ = ["map_raster"]
 
 from .main import map_raster
 
