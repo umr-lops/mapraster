@@ -66,7 +66,6 @@ def test_no_antimeridian_no_nan():
     assert abs(v10_std - reference_values["V10"]["std"]) < tolerance
 
     print("✓ Case 1 passed: No antimeridian, no NaN")
-    return result
 
 
 def test_no_antimeridian_with_nan():
@@ -125,7 +124,6 @@ def test_no_antimeridian_with_nan():
     assert abs(v10_std - reference_values["V10"]["nanstd"]) < tolerance
 
     print("✓ Case 2 passed: No antimeridian, with NaN")
-    return result
 
 
 def test_with_antimeridian_no_nan():
@@ -178,7 +176,6 @@ def test_with_antimeridian_no_nan():
     assert abs(v10_std - reference_values["V10"]["std"]) < tolerance
 
     print("✓ Case 3 passed: With antimeridian, no NaN")
-    return result
 
 
 def test_with_antimeridian_with_nan():
@@ -234,7 +231,6 @@ def test_with_antimeridian_with_nan():
     assert abs(nan_ratio - reference_values["U10"]["nan_ratio"]) < 0.05
 
     print("✓ Case 4 passed: With antimeridian, with NaN")
-    return result
 
 
 def test_all_cases():
@@ -246,22 +242,20 @@ def test_all_cases():
     print("=" * 50)
 
     print("\n[1/4] No antimeridian, no NaN...")
-    result1 = test_no_antimeridian_no_nan()
+    test_no_antimeridian_no_nan()
 
     print("\n[2/4] No antimeridian, with NaN...")
-    result2 = test_no_antimeridian_with_nan()
+    test_no_antimeridian_with_nan()
 
     print("\n[3/4] With antimeridian, no NaN...")
-    result3 = test_with_antimeridian_no_nan()
+    test_with_antimeridian_no_nan()
 
     print("\n[4/4] With antimeridian, with NaN...")
-    result4 = test_with_antimeridian_with_nan()
+    test_with_antimeridian_with_nan()
 
     print("\n" + "=" * 50)
     print("✓ All 4 test cases passed successfully!")
     print("=" * 50 + "\n")
-
-    return result1, result2, result3, result4
 
 
 if __name__ == "__main__":
