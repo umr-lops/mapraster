@@ -8,9 +8,11 @@ Comprehensive regression tests for map_raster covering all 4 cases:
 
 Uses fake_dataset and fake_ecmwf_0100_1h from tools_test (no I/O).
 """
+
 import numpy as np
+from tools_test import build_footprint, fake_dataset, fake_ecmwf_0100_1h
+
 from mapraster.main import map_raster
-from tools_test import fake_dataset, fake_ecmwf_0100_1h, build_footprint
 
 
 def test_no_antimeridian_no_nan():
@@ -64,7 +66,6 @@ def test_no_antimeridian_no_nan():
     assert abs(v10_std - reference_values["V10"]["std"]) < tolerance
 
     print("✓ Case 1 passed: No antimeridian, no NaN")
-    return result
 
 
 def test_no_antimeridian_with_nan():
@@ -113,15 +114,16 @@ def test_no_antimeridian_with_nan():
 
     # More relaxed tolerance for NaN case (interpolation differences)
     tolerance = 1e-5
-    assert abs(u10_mean - reference_values["U10"]
-               ["nanmean"]) < tolerance or np.isnan(u10_mean)
-    assert abs(v10_mean - reference_values["V10"]
-               ["nanmean"]) < tolerance or np.isnan(v10_mean)
+    assert abs(u10_mean - reference_values["U10"]["nanmean"]) < tolerance or np.isnan(
+        u10_mean
+    )
+    assert abs(v10_mean - reference_values["V10"]["nanmean"]) < tolerance or np.isnan(
+        v10_mean
+    )
     assert abs(u10_std - reference_values["U10"]["nanstd"]) < tolerance
     assert abs(v10_std - reference_values["V10"]["nanstd"]) < tolerance
 
     print("✓ Case 2 passed: No antimeridian, with NaN")
-    return result
 
 
 def test_with_antimeridian_no_nan():
@@ -174,7 +176,6 @@ def test_with_antimeridian_no_nan():
     assert abs(v10_std - reference_values["V10"]["std"]) < tolerance
 
     print("✓ Case 3 passed: With antimeridian, no NaN")
-    return result
 
 
 def test_with_antimeridian_with_nan():
@@ -230,34 +231,31 @@ def test_with_antimeridian_with_nan():
     assert abs(nan_ratio - reference_values["U10"]["nan_ratio"]) < 0.05
 
     print("✓ Case 4 passed: With antimeridian, with NaN")
-    return result
 
 
 def test_all_cases():
     """
     Run all 4 test cases and display summary.
     """
-    print("\n" + "="*50)
+    print("\n" + "=" * 50)
     print("Running all 4 map_raster regression test cases")
-    print("="*50)
+    print("=" * 50)
 
     print("\n[1/4] No antimeridian, no NaN...")
-    result1 = test_no_antimeridian_no_nan()
+    test_no_antimeridian_no_nan()
 
     print("\n[2/4] No antimeridian, with NaN...")
-    result2 = test_no_antimeridian_with_nan()
+    test_no_antimeridian_with_nan()
 
     print("\n[3/4] With antimeridian, no NaN...")
-    result3 = test_with_antimeridian_no_nan()
+    test_with_antimeridian_no_nan()
 
     print("\n[4/4] With antimeridian, with NaN...")
-    result4 = test_with_antimeridian_with_nan()
+    test_with_antimeridian_with_nan()
 
-    print("\n" + "="*50)
+    print("\n" + "=" * 50)
     print("✓ All 4 test cases passed successfully!")
-    print("="*50 + "\n")
-
-    return result1, result2, result3, result4
+    print("=" * 50 + "\n")
 
 
 if __name__ == "__main__":

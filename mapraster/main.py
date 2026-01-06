@@ -76,18 +76,14 @@ def map_raster(
     # --- restrict raster to footprint bbox ---
     ilon_range = [
         max(1, np.searchsorted(raster_ds.x.values, lon_range[0])),
-        min(np.searchsorted(raster_ds.x.values, lon_range[1]),
-            raster_ds.x.size),
+        min(np.searchsorted(raster_ds.x.values, lon_range[1]), raster_ds.x.size),
     ]
     ilat_range = [
         max(1, np.searchsorted(raster_ds.y.values, lat_range[0])),
-        min(np.searchsorted(raster_ds.y.values, lat_range[1]),
-            raster_ds.y.size),
+        min(np.searchsorted(raster_ds.y.values, lat_range[1]), raster_ds.y.size),
     ]
 
-    ilon_range, ilat_range = [
-        [rg[0] - 1, rg[1] + 1] for rg in (ilon_range, ilat_range)
-    ]
+    ilon_range, ilat_range = [[rg[0] - 1, rg[1] + 1] for rg in (ilon_range, ilat_range)]
 
     raster_ds = raster_ds.isel(
         x=slice(*ilon_range),
@@ -137,11 +133,7 @@ def map_raster(
             )
 
         # final interpolation on image grid
-        mapped.append(
-            upscaled
-            .interp(x=target_lon, y=target_lat)
-            .drop_vars(("x", "y"))
-        )
+        mapped.append(upscaled.interp(x=target_lon, y=target_lat).drop_vars(("x", "y")))
 
     mapped_ds = xr.merge(mapped)
 

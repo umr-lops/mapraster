@@ -1,7 +1,8 @@
 import numpy as np
 import xarray as xr
+from tools_test import build_footprint, fake_dataset, fake_ecmwf_0100_1h
+
 from mapraster.main import map_raster
-from tools_test import fake_dataset, build_footprint, fake_ecmwf_0100_1h
 
 
 def test_map_raster_no_antimeridian():

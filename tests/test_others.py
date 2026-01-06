@@ -1,7 +1,8 @@
-from mapraster.main import _get_image_dims, map_raster
 import numpy as np
 import xarray as xr
-from tools_test import fake_dataset, build_footprint, fake_ecmwf_0100_1h
+from tools_test import build_footprint, fake_dataset, fake_ecmwf_0100_1h
+
+from mapraster.main import _get_image_dims, map_raster
 
 
 def test_get_image_dims_ignore_pol():
@@ -34,19 +35,29 @@ def test_data_type():
         with_nan=False,
     )
 
-    assert type(map_raster(
-        raster_ds=raster,  # Dataset
-        originalDataset=dataset,
-        footprint=footprint,
-        cross_antimeridian=False,
-    )) == xr.Dataset
+    assert (
+        type(
+            map_raster(
+                raster_ds=raster,  # Dataset
+                originalDataset=dataset,
+                footprint=footprint,
+                cross_antimeridian=False,
+            )
+        )
+        == xr.Dataset
+    )
 
-    assert type(map_raster(
-        raster_ds=raster.U10,  # DataArray
-        originalDataset=dataset,
-        footprint=footprint,
-        cross_antimeridian=False,
-    )) == xr.DataArray
+    assert (
+        type(
+            map_raster(
+                raster_ds=raster.U10,  # DataArray
+                originalDataset=dataset,
+                footprint=footprint,
+                cross_antimeridian=False,
+            )
+        )
+        == xr.DataArray
+    )
 
 
 test_data_type()
