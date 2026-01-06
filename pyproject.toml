@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "mapraster"
-version = "2026.01.05"
+version = "2026.01.06"
 description = "mapraster is a Python lib to interpolate xarray raster field on image geometry (e.g. line/sample)"
 readme = "README.md"
 authors = ["umr-lops <antoine.grouazel@ifremer.fr>", "umr-lops <vince.lhx@gmail.com>"]
