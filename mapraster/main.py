@@ -135,7 +135,7 @@ def map_raster(
         # final interpolation on image grid
         mapped.append(upscaled.interp(x=target_lon, y=target_lat).drop_vars(("x", "y")))
 
-    mapped_ds = xr.merge(mapped)
+    mapped_ds = xr.merge(mapped, compat="no_conflicts")
 
     # --- Dataset → DataArray ---
     if name is not None:
