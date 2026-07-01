@@ -83,7 +83,7 @@ def map_raster(
         min(np.searchsorted(raster_ds.y.values, lat_range[1]), raster_ds.y.size),
     ]
 
-    ilon_range, ilat_range = [[rg[0] - 1, rg[1] + 1] for rg in (ilon_range, ilat_range)]
+    ilon_range, ilat_range = ([rg[0] - 1, rg[1] + 1] for rg in (ilon_range, ilat_range))
 
     raster_ds = raster_ds.isel(
         x=slice(*ilon_range),
@@ -135,7 +135,7 @@ def map_raster(
         # final interpolation on image grid
         mapped.append(upscaled.interp(x=target_lon, y=target_lat).drop_vars(("x", "y")))
 
-    mapped_ds = xr.merge(mapped)
+    mapped_ds = xr.merge(mapped, compat="no_conflicts")
 
     # --- Dataset → DataArray ---
     if name is not None:
